@@ -1,486 +1,378 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qian Chen · 陈千</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="author" content="Qian Chen">
+<meta name="description" content="Qian Chen (陈千), PhD student at Fudan University working on multimodal large language models and audio-visual understanding and generation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&text=%E9%99%88%E5%8D%83&display=swap">
+<style>
+/* Layout: sticky profile column (photo, name, waveform, links) beside a single reading column of sections. */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #141c27;
+  --muted: #5a6577;
+  --line: #dbe1e8;
+  --accent: #0b7a57;
+  --accent-soft: #e2f2ec;
+  --display: "Newsreader", "Noto Serif SC", Georgia, serif;
+  --body: "Geist", -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --cjk: "Noto Serif SC", "Songti SC", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e131a; --surface: #151c25; --ink: #e3e8ee; --muted: #93a0b1;
+    --line: #253040; --accent: #52cf9a; --accent-soft: #15302a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e131a; --surface: #151c25; --ink: #e3e8ee; --muted: #93a0b1;
+  --line: #253040; --accent: #52cf9a; --accent-soft: #15302a; color-scheme: dark;
+}
 
-  <title>Qian Chen</title>
-  
-  <meta name="author" content="Qian Chen">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link rel="icon" href="data:image/svg+xml">
-  <style>
-    .scrollable-list {
-        max-height: 215px; /* 调整这个高度以适应7行文本的显示 */
-        overflow-y: auto; /* 显示垂直滚动条 */
-        width: 100%; /* 或根据需要调整宽度 */
-        border: none;
-        margin: 0 auto;
-    }
-    table {
-        width: 100%;
-        border-spacing: 0px;
-        border-collapse: separate;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    ul {
-        list-style-type: disc; /* 取消默认的列表标记 */
-        padding: 20; /* 取消默认的内边距 */
-    }
-    ul li {
-        padding: 2px; /* 添加每一项的内边距 */
-    }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15.5px/1.65 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+img { max-width: 100%; }
 
-    .tag {
-      display: inline-block;
-      background-color: #0073e6;
-      color: rgb(33, 32, 32);
-      padding: 3px 7px;
-      border-radius: 15px;
-      font-size: 0.8em;
-      margin-right: 5px;
-    }
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-block: 64px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 72px;
+}
 
-    .tag-llm {
-      background-color: #ffc8dd;
-    }
+/* ---------- profile ---------- */
+.profile { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 40px); align-self: start; display: grid; gap: 22px; }
+.photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--line);
+}
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; transition: transform .6s ease; }
+.photo:hover img { transform: scale(1.03); }
+.ident { display: grid; gap: 6px; }
+h1 {
+  margin: 0;
+  font: 500 2.4rem/1.05 var(--display);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+h1 .cjk { font-family: var(--cjk); font-size: .78em; font-weight: 500; color: var(--muted); margin-left: .25em; letter-spacing: .08em; }
+.role { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.5; }
+.wave { width: 100%; height: 36px; display: block; }
+.links { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .92rem; }
+.links a { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+.links a:hover { color: var(--accent); text-decoration: none; }
+.links svg { width: 16px; height: 16px; flex: none; color: var(--muted); }
+.links a:hover svg { color: var(--accent); }
+.links .addr { font-family: var(--mono); font-size: .82rem; user-select: all; }
 
-    .tag-trust {
-      background-color: #cdb4db;
-    }
+/* ---------- main column ---------- */
+main { display: grid; gap: 64px; min-width: 0; }
+section { display: grid; gap: 20px; min-width: 0; }
+h2 {
+  margin: 0;
+  display: flex; align-items: baseline; gap: 14px;
+  font: 500 1.65rem/1.2 var(--display);
+}
+h2::after { content: ""; flex: 1; height: 1px; background: var(--line); transform: translateY(-6px); }
+.lede { margin: 0; font: 400 1.32rem/1.5 var(--display); max-width: 36em; text-wrap: pretty; }
+.lede em { font-style: normal; color: var(--accent); }
+.about p { margin: 0; max-width: 40em; color: var(--muted); }
+.about p a { font-weight: 500; }
 
-    .tag-co {
-      background-color: #bde0fe;
-    }
+/* news */
+.news { list-style: none; margin: 0; padding: 0; display: grid; }
+.news li {
+  display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 16px;
+  padding: 10px 0; border-top: 1px solid var(--line);
+}
+.news li:last-child { border-bottom: 1px solid var(--line); }
+.news time { font: 500 .8rem/1.9 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.news strong { font-weight: 600; }
 
-    .tag-fl {
-      background-color: #a2d2ff;
-    }
-  </style>
+/* publications */
+.note { margin: -6px 0 0; font-size: .85rem; color: var(--muted); }
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.pub {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 20px;
+  padding: 20px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  transition: border-color .2s ease;
+}
+.pub:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.venue { display: grid; align-content: start; gap: 2px; font-family: var(--mono); }
+.venue b { font-weight: 500; font-size: .9rem; color: var(--accent); letter-spacing: .02em; }
+.venue span { font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.pub h3 { margin: 0 0 6px; font: 600 1.06rem/1.4 var(--display); letter-spacing: .005em; text-wrap: balance; }
+.pub h3 a { color: var(--ink); }
+.pub h3 a:hover { color: var(--accent); }
+.authors { margin: 0; font-size: .9rem; color: var(--muted); }
+.authors .me { color: var(--ink); font-weight: 600; }
+.authors sup { font-size: .7em; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chips a {
+  font: 500 .74rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em;
+  padding: 6px 9px; border-radius: 4px; color: var(--accent); background: var(--accent-soft);
+}
+.chips a:hover { text-decoration: none; background: var(--accent); color: var(--surface); }
+.chips .topic { font: 400 .78rem/1 var(--body); padding: 6px 2px; color: var(--muted); margin-left: auto; align-self: center; }
+
+/* education */
+.edu { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.edu li {
+  display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 16px; align-items: center;
+  padding: 14px 0; border-top: 1px solid var(--line);
+}
+.edu li:last-child { border-bottom: 1px solid var(--line); }
+.logo { width: 48px; height: 48px; border-radius: 50%; background: #fff; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); }
+.logo img { width: 86%; height: 86%; object-fit: contain; }
+.edu h3 { margin: 0; font: 600 1rem/1.35 var(--body); }
+.edu p { margin: 0; font-size: .88rem; color: var(--muted); }
+.edu time { font: .8rem/1.4 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+
+/* honors & misc */
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.plain li { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 16px; }
+.plain time { font: 500 .8rem/1.9 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.visitors { max-width: 220px; opacity: .85; }
+.misc { margin: 0; max-width: 40em; color: var(--muted); }
+
+footer { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 24px; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); }
+
+/* ---------- narrow ---------- */
+@media (max-width: 860px) {
+  .page { grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 32px 32px; }
+  .profile { position: static; grid-template-columns: 132px minmax(0, 1fr); gap: 18px 20px; align-items: end; }
+  .profile .photo { grid-row: span 2; }
+  .wave, .links { grid-column: 1 / -1; }
+  .links { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  h1 { font-size: 2rem; }
+}
+@media (max-width: 520px) {
+  .pub { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 18px; }
+  .venue { grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 10px; }
+  .edu li { grid-template-columns: 40px minmax(0, 1fr); }
+  .logo { width: 40px; height: 40px; }
+  .edu time { grid-column: 2; text-align: left; }
+  .lede { font-size: 1.18rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
 </head>
-
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <p style="text-align:center">
-                <name>Qian Chen / 陈千</name>
-              </p>
-              <p>I am a PhD candidate under the supervision of <a href="https://xpqiu.github.io/"> Prof. Xipeng Qiu </a>  at <a href="https://www.fudan.edu.cn/">Fudan University (FDU)</a>. I received my master's degree at <a href="https://www.ecnu.edu.cn/">East China Normal University (ECNU)</a>. Before that, I received my bachelor degree from <a href="https://www.hfut.edu.cn/">Hefei University of Technology</a>.
-              </p>
-              <p>
-                 My research interests focus on  <u>Multimodal Large Language Models</u>, particularly on Audio-Visual Understanding and Generation. 
-              </p>
-             
-              <p style="text-align:center">
-                <a href="mailto:qianchen901005@gmail.com">Email</a> &nbsp/&nbsp
-                <!-- <a href="data/JonBarron-CV.pdf">CV</a> &nbsp/&nbsp -->
-                <!-- <a href="data/JonBarron-bio.txt">Bio</a> &nbsp/&nbsp -->
-                <!-- <a href="https://scholar.google.com/citations?user=Q4-VTxcAAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp -->
-                <!-- <a href="https://twitter.com/jon_barron">Twitter</a> &nbsp/&nbsp -->
-                <a href="https://github.com/qq31415926/">Github</a> 
-                <!-- <a href="https://www.linkedin.com/in/rui-ye-a66b2420a/">LinkedIn</a> &nbsp/&nbsp -->
-                <!-- <a href="https://twitter.com/ruiye1129">Twitter</a> -->
-              </p>
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <a href="images/cq.jpg"><img style="width:80%;max-width:100%" alt="profile photo" src="images/avatar3.png" class="hoverZoomLink"></a>
-            </td>
-          </tr>
-        </tbody></table>
-        
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>🔥 News</heading>
-          </td>
-        </tr>
-        </tbody></table>
+<div class="page">
 
-        <table>
-          <tbody>
-              <tr>
-                  <td>
-                      <div class="scrollable-list">
-                          <ul>
-				  <li>[2026.05] Happy to join the <a href="https://github.com/OpenMOSS/MOVA">MOVA</a> team!
-				  <li>[2026.04] FutureOmni is accepted by <strong>ICML2026</strong>.</li> 
-				  <li>[2026.01] Check out our newest paper (<a href="https://arxiv.org/abs/2601.13836">FutureOmni</a>). <a href="https://github.com/OpenMOSS/FutureOmni">Code</a> and <a href="https://huggingface.co/datasets/OpenMOSS-Team/FutureOmni">Data</a> are ready.
-			      <li>[2025.05] One paper (<a href="https://arxiv.org/abs/2502.16770">LED Merging</a>) is accepted by <strong>ACL 2025</strong>!</li>
-			      <li>[2025.04]  I was awarded the Outstanding  Graudate. 
-                              <li>[2024.011] I was awarded the <strong>National Scholarship</strong> 2024.
-                              <li>[2024.010] One paper (<a href="https://arxiv.org/abs/2403.16554">PE</a>) is accepted by <strong>EMNLP 2024</strong>!</li>
-                              <!-- <li>[2024.08] One co-first authored paper (FedRSU) is accepted by <strong>T-ITS</strong>!</li> -->
-                              <li>[2024.08] Start internship at Shanghai AI Lab.</li>
-                              <!-- <li>[2024.07] I will attend ICML 2024 at Vienna, Austria. See you there!</li> -->
-                              <!-- <li>[2024.06] We release the first realistic benchmark for FedLLM: <a href="https://arxiv.org/pdf/2406.04845">FedLLM-Bench</a>!</li> -->
-                              <!-- <li>[2024.05] One paper (OpenFedLLM) is accepted by <strong>KDD 2024</strong>!</li> -->
-                              <!-- <li>[2024.05] One co-first authored paper (Reverse Alignment) is accepted by <strong>Findings of ACL 2024</strong>!</li> -->
-                              <!-- <li>[2024.05] One co-first authored paper (MATRIX) is accepted by <strong>ICML 2024 (Spotlight)</strong>!</li> -->
-                              <!-- <li>[2024.02] We release a comprehensive [FL x LLMs] framework <a href="https://arxiv.org/pdf/2402.06954.pdf">OpenFedLLM</a>!!!</li> -->
-                              <li>[2023.12] One paper (CIDR) is accepted by <strong>AAAI 2024</strong>! See you at Vancouver!</li>
-                              <!-- <li>[2023.12] Checking out from MSRA in November and actively seeking new collaboration opportunities.</li> -->
-                              <!-- <li>[2023.08] One paper (FedFM) is accepted by <strong>IEEE Transactions on Signal Processing (T-SP)</strong>!</li> -->
-                              <!-- <li>[2023.07] Start second internship at Microsoft Research Asia <strong>(MSRA)</strong>, Beijing (on-site).</li> -->
-                              <!-- <li>[2023.04] Two papers (FedDisco & pFedGraph) are accepted by <strong>ICML 2023</strong>!</li> -->
-                              
-                          </ul>
-                      </div>
-                  </td>
-              </tr>
-          </tbody>
-        </table>
-
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-            <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading>📑 Publications</heading>
-              <p>
-                <sup>*</sup> denotes equal contribution, <sup>†</sup> denotes corresponding author, some are <span class="highlight">highlighted</span>.
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-    
-    <style> /* Year title format */
-      .year-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-left: 20px;
-      }
-    </style>
-
-    <!-- <div class="year-title">2024</div> -->
-
-	<table style="width:100%;border:0px;border-spacing:0 5px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      
-      <tr>
-        
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <div style="color: cornflowerblue;"><papertitle>FutureOmni: Evaluating Future Forecasting from Omni-Modal Context for Multimodal LLMs
-</papertitle></div>
-          <div class="tags" data-tags="trust"></div>
-          <strong>Qian Chen</strong>, Jinlan Fu <sup>†</sup>, Changsong Li, Min Zhang, See-Kiong Ng, Xipeng Qiu
-          <br>
-          <a href="https://arxiv.org/abs/2601.13836">arXiv</a>  
-          <br>
-        </td>
-      </tr>
-    <table style="width:100%;border:0px;border-spacing:0 5px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      
-      <tr>
-        
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <div style="color: cornflowerblue;"><papertitle>LED-Merging: Mitigating Safety-Utility Conflicts in Model Merging with Location-Election-Disjoint
-</papertitle></div>
-          <div class="tags" data-tags="trust"></div>
-          Qianli Ma, Dongrui Liu, <strong>Qian Chen</strong>, Linfeng Zhang, Jing Shao <sup>†</sup>
-          <br>
-          <a href="https://arxiv.org/abs/2502.16770">arXiv</a>  
-          <br>
-        </td>
-      </tr>
-
-	      
-    <table style="width:100%;border:0px;border-spacing:0 5px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      
-      <tr>
-        
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <div style="color: cornflowerblue;"><papertitle>Concept Based Continuous Prompts for Interpretable Text Classification</papertitle></div>
-          <div class="tags" data-tags="trust"></div>
-          <strong>Qian Chen</strong>,   Dongyang Li, Xiaofeng He <sup>†</sup>
-          
-           <a href="https://github.com/qq31415926/CD">Code</a> 
-          <br>
-        </td>
-      </tr>
-
-
-
-    <table style="width:100%;border:0px;border-spacing:0 5px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      
-      <tr>
-        
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <div style="color: cornflowerblue;"><papertitle>PE: A Poincare Explanation Method for Fast Text Hierarchy Generation</papertitle></div>
-          <div class="tags" data-tags="trust"></div>
-          <strong>Qian Chen</strong>,   Dongyang Li, Xiaofeng He <sup>†</sup>, Hongzhao Li, Hongyu Yi
-          <br>
-          <em>EMNLP</em>, 2024
-          <br>
-          <a href="https://arxiv.org/abs/2403.16554">arXiv</a> / <a href="data/pe.bib">BibTeX</a> / <a href="https://github.com/qq31415926/PE">Code</a> 
-          <br>
-        </td>
-      </tr>
-
-      
-      <!-- <div class="year-title">2023</div> -->
-      <table style="width:100%;border:0px;border-spacing:0 5px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-
-      <tr>
-        <!-- <td style="padding:20px;width:25%;vertical-align:middle">
-          <img src="images/fedllmattack_overview.pdf" alt="fedllmattack" width="160">
-          <p><img src="images/fedllmattack_results.png" alt="fedllmattack" width="160"></p>
-        </td> -->
-        <!-- <td width="75%" valign="center"> -->
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <div style="color: cornflowerblue;"><papertitle>CIDR: A Cooperative Integrated Dynamic Refining Method for Minimal Feature Removal Problem</papertitle></div>
-          <div class="tags" data-tags="trust"></div>
-          <strong>Qian Chen</strong>, Taolin Zhang, Dongyang Li, Xiaofeng He<sup>†</sup>
-          <br>
-          <em>AAAI</em>, 2024
-          <br>
-          <a href="https://arxiv.org/abs/2312.08157">arXiv</a> / <a href="data/cidr.bib">BibTeX</a> / <a href="https://github.com/qq31415926/CIDR">Code</a>
-          <br>
-        </td>
-      </tr>
-      
-      
-
-      
-
-    </tbody></table>
-
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr>
-      <td style="padding:20px;width:100%;vertical-align:middle">
-        <heading>🎓 Educations</heading>
-      </td>
-    </tr>
-  </tbody></table>
-
-  <table style="width:100%;">
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle;">
-        <img src="images/fdu.jpg" alt="fdu" width="100">
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        Degree: PhD
-        <br>
-        Period: 2025.09 - 2029.06(Planned)
-        <br>
-        Major: Computer Science and Technology
-        <br>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle;">
-        <img src="images/ecnu.png" alt="ecnu" width="100">
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        Degree: Master
-        <br>
-        Period: 2022.09 - 2025.06
-        <br>
-        Major: Computer Science and Technology
-        <br>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle;">
-        <img src="images/hfut2.png" alt="hfut" width="100">
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        Degree: Bachelor
-        <br>
-        Period: 2018.09 - 2022.06
-        <br>
-        Major: Computer Science and Technology (AI Class)
-        <br>
-      </td>
-    </tr>
-  </table>
-  
-
-     <!-- <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr>
-      <td style="padding:20px;width:25%;vertical-align:middle;">
-        <img src="images/ecnu.png" alt="ecnu" width="100">
-      </td>
-      <td width="50%" valign="center">
-       <td style="padding:20px;width:75%;vertical-align:left"> 
-        <br>
-        Period: 2022.09 - 2025.06
-        <br>
-        Major:  Computer Science and Technology
-        <br>
-        GPA:    3.49/4.0
-      </td> 
-
-      <td style="padding:20px;width:25%;vertical-align:middle;">
-        <img src="images/hfut2.png" alt="hfut" width="100">
-      </td>
-       <td width="50%" valign="center">
-      <td style="padding:20px;width:75%;vertical-align:middle">
-        Degree: Bachelor
-        <br>
-        Period: 2018.09 - 2022.06
-        <br>
-        Major:  Computer Science and Technology (AI Class)
-        <br>
-        GPA:    3.61/4.3 (7/28)
-      </td>
-    </tr> -->
-    <!-- <style>
-      .education-container {
-        display: flex; /* 使用flexbox水平排列 */
-        align-items: center; /* 垂直居中 */
-        justify-content: space-between; /* 均匀分布 */
-        gap: 20px; /* 设置列之间的间距 */
-      }
-      .education-block {
-        display: flex;
-        flex: 1; /* 平均分配宽度 */
-        padding: 20px;
-      }
-      .education-info {
-        flex: 3; /* 调整信息部分所占比例 */
-      }
-      img {
-        width: 100px;
-      }
-    </style> -->
-    
-    <!-- <div class="education-container">
-      <div class="education-block">
-        <img src="images/ecnu.png" alt="ecnu">
-        <div class="education-info">
-          <strong>Degree:</strong> Master<br>
-          <strong>Period:</strong> 2022.09 - 2025.06<br>
-          <strong>Major:</strong> Computer Science and Technology<br>
-          <strong>GPA:</strong> 3.49/4.0
-        </div>
-      </div>
-    
-      <div class="education-block">
-        <img src="images/hfut2.png" alt="hfut">
-        <div class="education-info">
-          <strong>Degree:</strong> Bachelor<br>
-          <strong>Period:</strong> 2018.09 - 2022.06<br>
-          <strong>Major:</strong> Computer Science and Technology (AI Class)<br>
-          <strong>GPA:</strong> 3.61/4.3 (7/28)
-        </div>
-      </div>
+  <aside class="profile">
+    <a class="photo" href="images/cq.jpg"><img src="images/avatar3.png" alt="Qian Chen in front of the N Seoul Tower"></a>
+    <div class="ident">
+      <h1>Qian Chen<span class="cjk">陈千</span></h1>
+      <p class="role">PhD student, Fudan University<br>OpenMOSS · MOVA team</p>
     </div>
-     
-    
-     
-    
-    
-  </tbody></table>-->
+    <canvas class="wave" id="wave" aria-hidden="true"></canvas>
+    <ul class="links">
+      <li><a href="mailto:qianchen901005@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span class="addr">qianchen901005@gmail.com</span></a></li>
+      <li><a href="https://github.com/qq31415926/">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+        GitHub · qq31415926</a></li>
+      <li><a href="https://www.xiaohongshu.com/user/profile/604f15db0000000001004a06">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+        小红书 RedNote</a></li>
+      <li><a href="https://github.com/OpenMOSS/MOVA">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11v2M21 12h0"/></svg>
+        MOVA</a></li>
+    </ul>
+  </aside>
 
-  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr>
-        <td>
-          <heading>🥇 Honors & Awards</heading>
-        </td>
-      </tr>
-    </tbody></table>
+  <main>
+    <section class="about" id="about">
+      <p class="lede">I study <em>multimodal large language models</em>, with a focus on audio-visual understanding and generation.</p>
+      <p>I am a PhD student at <a href="https://www.fudan.edu.cn/">Fudan University</a>, advised by <a href="https://xpqiu.github.io/">Prof. Xipeng Qiu</a>. I received my master's degree from <a href="https://www.ecnu.edu.cn/">East China Normal University</a> and my bachelor's degree from <a href="https://www.hfut.edu.cn/">Hefei University of Technology</a>.</p>
+    </section>
 
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr>
-        <td>
-          <ul>
-            <li><strong>National Scholarship</strong> for Master Students, 2024</li>
-            <li><strong>The First Prize Scholarship</strong> for Undergraduates , 2021</li>
-            
-          </ul>
-        </td>
-      </tr>
-    </tbody></table>
+    <section id="news">
+      <h2>News</h2>
+      <ul class="news">
+        <li><time datetime="2026-10">2026.10</time><span>Released <a href="https://huggingface.co/OpenMOSS-Team/MOSS-Image-SFT">MOSS-Image</a>.</span></li>
+        <li><time datetime="2026-05">2026.05</time><span>Joined the <a href="https://github.com/OpenMOSS/MOVA">MOVA</a> team.</span></li>
+        <li><time datetime="2026-04">2026.04</time><span>FutureOmni is accepted by <strong>ICML 2026</strong>.</span></li>
+        <li><time datetime="2026-01">2026.01</time><span>New paper: <a href="https://arxiv.org/abs/2601.13836">FutureOmni</a>. <a href="https://github.com/OpenMOSS/FutureOmni">Code</a> and <a href="https://huggingface.co/datasets/OpenMOSS-Team/FutureOmni">data</a> are released.</span></li>
+        <li><time datetime="2025-05">2025.05</time><span><a href="https://arxiv.org/abs/2502.16770">LED-Merging</a> is accepted by <strong>ACL 2025</strong>.</span></li>
+        <li><time datetime="2025-04">2025.04</time><span>Awarded Outstanding Graduate.</span></li>
+        <li><time datetime="2024-11">2024.11</time><span>Awarded the <strong>National Scholarship</strong>.</span></li>
+        <li><time datetime="2024-10">2024.10</time><span><a href="https://arxiv.org/abs/2403.16554">PE</a> is accepted by <strong>EMNLP 2024</strong>.</span></li>
+        <li><time datetime="2024-08">2024.08</time><span>Started an internship at Shanghai AI Lab.</span></li>
+        <li><time datetime="2023-12">2023.12</time><span>CIDR is accepted by <strong>AAAI 2024</strong>.</span></li>
+      </ul>
+    </section>
 
-				
-        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-          <tr>
-            <td>
-              <heading>👀 Misc</heading>
-            </td>
-          </tr>
-        </tbody></table>
+    <section id="publications">
+      <h2>Publications</h2>
+      <p class="note"><sup>†</sup> corresponding author</p>
+      <ol class="pubs">
+        <li class="pub">
+          <div class="venue"><b>ICML</b><span>2026</span></div>
+          <div>
+            <h3><a href="https://arxiv.org/abs/2601.13836">FutureOmni: Evaluating Future Forecasting from Omni-Modal Context for Multimodal LLMs</a></h3>
+            <p class="authors"><span class="me">Qian Chen</span>, Jinlan Fu<sup>†</sup>, Changsong Li, Min Zhang, See-Kiong Ng, Xipeng Qiu</p>
+            <div class="chips">
+              <a href="https://arxiv.org/abs/2601.13836">arXiv</a>
+              <a href="https://github.com/OpenMOSS/FutureOmni">Code</a>
+              <a href="https://huggingface.co/datasets/OpenMOSS-Team/FutureOmni">Data</a>
+              <span class="topic">Omni-modal LLMs</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><b>ACL</b><span>2025</span></div>
+          <div>
+            <h3><a href="https://arxiv.org/abs/2502.16770">LED-Merging: Mitigating Safety-Utility Conflicts in Model Merging with Location-Election-Disjoint</a></h3>
+            <p class="authors">Qianli Ma, Dongrui Liu, <span class="me">Qian Chen</span>, Linfeng Zhang, Jing Shao<sup>†</sup></p>
+            <div class="chips">
+              <a href="https://arxiv.org/abs/2502.16770">arXiv</a>
+              <span class="topic">Model merging · Safety</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><b>EMNLP</b><span>2024</span></div>
+          <div>
+            <h3><a href="https://arxiv.org/abs/2403.16554">PE: A Poincaré Explanation Method for Fast Text Hierarchy Generation</a></h3>
+            <p class="authors"><span class="me">Qian Chen</span>, Dongyang Li, Xiaofeng He<sup>†</sup>, Hongzhao Li, Hongyu Yi</p>
+            <div class="chips">
+              <a href="https://arxiv.org/abs/2403.16554">arXiv</a>
+              <a href="data/pe.bib">BibTeX</a>
+              <a href="https://github.com/qq31415926/PE">Code</a>
+              <span class="topic">Interpretability</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><b>AAAI</b><span>2024</span></div>
+          <div>
+            <h3><a href="https://arxiv.org/abs/2312.08157">CIDR: A Cooperative Integrated Dynamic Refining Method for Minimal Feature Removal Problem</a></h3>
+            <p class="authors"><span class="me">Qian Chen</span>, Taolin Zhang, Dongyang Li, Xiaofeng He<sup>†</sup></p>
+            <div class="chips">
+              <a href="https://arxiv.org/abs/2312.08157">arXiv</a>
+              <a href="data/cidr.bib">BibTeX</a>
+              <a href="https://github.com/qq31415926/CIDR">Code</a>
+              <span class="topic">Interpretability</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><b>Preprint</b><span>&nbsp;</span></div>
+          <div>
+            <h3><a href="https://github.com/qq31415926/CD">Concept Based Continuous Prompts for Interpretable Text Classification</a></h3>
+            <p class="authors"><span class="me">Qian Chen</span>, Dongyang Li, Xiaofeng He<sup>†</sup></p>
+            <div class="chips">
+              <a href="https://github.com/qq31415926/CD">Code</a>
+              <span class="topic">Interpretability</span>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          
-          <tr>
-            <td style="padding:20px;width:100%;vertical-align:middle">
-              <strong>Life</strong>:I love playing badminton and fitness. I play Honor of Kings and Don't Starve Together. I used to play Brawl Stars.
-            </td>
-          </tr>
-        </tbody></table>
+    <section id="education">
+      <h2>Education</h2>
+      <ul class="edu">
+        <li>
+          <span class="logo"><img src="images/fdu.jpg" alt="Fudan University"></span>
+          <div><h3>Fudan University</h3><p>PhD, Computer Science and Technology</p></div>
+          <time>2025.09 – 2029.06 (expected)</time>
+        </li>
+        <li>
+          <span class="logo"><img src="images/ecnu.png" alt="East China Normal University"></span>
+          <div><h3>East China Normal University</h3><p>M.S., Computer Science and Technology</p></div>
+          <time>2022.09 – 2025.06</time>
+        </li>
+        <li>
+          <span class="logo"><img src="images/hfut2.png" alt="Hefei University of Technology"></span>
+          <div><h3>Hefei University of Technology</h3><p>B.E., Computer Science and Technology (AI Class)</p></div>
+          <time>2018.09 – 2022.06</time>
+        </li>
+      </ul>
+    </section>
 
+    <section id="honors">
+      <h2>Honors</h2>
+      <ul class="plain">
+        <li><time>2025</time><span>Outstanding Graduate</span></li>
+        <li><time>2024</time><span><strong>National Scholarship</strong> for Master's Students</span></li>
+        <li><time>2021</time><span>First Prize Scholarship for Undergraduates</span></li>
+      </ul>
+    </section>
 
-        <table width="50%" align="center" border="0" cellpadding="20"><tbody>
-					
-          <!-- <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/cvf.jpg"></td>
-            <td width="75%" valign="center">
-              <a href="https://cvpr2022.thecvf.com/area-chairs">Area Chair, CVPR 2022</a>
-              <br>
-              <a href="http://cvpr2021.thecvf.com/area-chairs">Area Chair & Longuet-Higgins Award Committee Member, CVPR 2021</a>
-              <br>
-              <a href="http://cvpr2019.thecvf.com/area_chairs">Area Chair, CVPR 2019</a>
-              <br>
-              <a href="http://cvpr2018.thecvf.com/organizers/area_chairs">Area Chair, CVPR 2018</a>
-            </td>
-          </tr>
-					
-          <tr>
-            <td align="center" style="padding:20px;width:25%;vertical-align:middle">
-							<heading>Basically <br> Blog Posts</heading>
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://arxiv.org/abs/2112.11687">Squareplus: A Softplus-Like Algebraic Rectifier</a>
-              <br>
-              <a href="https://arxiv.org/abs/2010.09714">A Convenient Generalization of Schlick's Bias and Gain Functions</a>
-              <br>
-              <a href="https://arxiv.org/abs/1704.07483">Continuously Differentiable Exponential Linear Units</a>
-            </td>
-          </tr> -->
-				
-				<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=7PmJikxJk324BBRWUrbE2SWNBd9X6PBJ1XTz2PMpA7k&cl=ffffff&w=a"></script>
-        </tbody></table>
+    <section id="misc">
+      <h2>Off the clock</h2>
+      <p class="misc">I play badminton and lift. In games, you'll find me in Honor of Kings and Don't Starve Together, and I used to play a lot of Brawl Stars.</p>
+      <div class="visitors"><script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=7PmJikxJk324BBRWUrbE2SWNBd9X6PBJ1XTz2PMpA7k&cl=ffffff&w=a"></script></div>
+    </section>
+  </main>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:0px">
-              <br>
-              <p style="text-align:right;font-size:small;">
-                Derived from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron's website</a>.
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-      </td>
-    </tr>
-  </table>
+  <footer>
+    <span>© 2026 Qian Chen</span>
+    <span>Originally derived from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron's website</a>.</span>
+  </footer>
+</div>
 
-  <!-- Definations for tags -->
-  <script>
-    // 预定义标签的名称和简称
-    const tagsMap = {
-      'llm': { name: 'LLMs', class: 'tag-llm' },
-      'trust': { name: 'Trustworhty AI', class: 'tag-trust' },
-      'co': { name: 'Collaborative AI', class: 'tag-co' },
-      'fl': { name: 'Federated Learning', class: 'tag-fl' },
-      ''
-    };
-  
-    // 渲染标签并为不同标签分配不同的CSS类
-    document.querySelectorAll('.tags').forEach(tagDiv => {
-      const tagAbbreviations = tagDiv.getAttribute('data-tags').split(',');
-      tagAbbreviations.forEach(abbreviation => {
-        if (tagsMap[abbreviation]) {
-          const tagElement = document.createElement('span');
-          tagElement.classList.add('tag', tagsMap[abbreviation].class);
-          tagElement.textContent = tagsMap[abbreviation].name;
-          tagDiv.appendChild(tagElement);
-        }
-      });
-    });
-  </script>
+<script>
+/* Decorative waveform under the name: seeded bars shaped by a soft envelope. */
+(function () {
+  const c = document.getElementById('wave');
+  if (!c) return;
+  function draw() {
+    const w = c.clientWidth, h = c.clientHeight, dpr = window.devicePixelRatio || 1;
+    if (!w) return;
+    c.width = w * dpr; c.height = h * dpr;
+    const ctx = c.getContext('2d');
+    ctx.scale(dpr, dpr);
+    const cs = getComputedStyle(document.documentElement);
+    const accent = cs.getPropertyValue('--accent').trim();
+    const line = cs.getPropertyValue('--line').trim();
+    let s = 7;
+    const rand = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    const step = 4, bar = 2, n = Math.floor(w / step);
+    for (let i = 0; i < n; i++) {
+      const t = i / n;
+      const env = 0.25 + 0.75 * Math.pow(Math.sin(Math.PI * t), 1.4) * (0.6 + 0.4 * Math.sin(t * 19));
+      const a = Math.max(0.08, Math.abs(env) * (0.35 + 0.65 * rand()));
+      const bh = Math.max(2, a * h);
+      ctx.fillStyle = t < 0.62 ? accent : line;
+      ctx.fillRect(i * step, (h - bh) / 2, bar, bh);
+    }
+  }
+  draw();
+  window.addEventListener('resize', draw);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
 </body>
-
 </html>
